@@ -18,15 +18,19 @@ st.write("Project 1: building toward visual ASL vocabulary recognition.")
 
 uploaded_file = st.file_uploader(
     "Upload an image containing an ASL sign",
-    type=["jpg", "jpeg", "png"]
-)
+    type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     processed_image = preprocess_image(image)
     width, height = image.size
     processed_width, processed_height = processed_image.size
-    
+    center_pixel = processed_image.getpixel((112, 112))
+    normalized_red = center_pixel[0] / 255
+    st.write("Normalized red:", normalized_red)
+    st.write("Center pixel RGB:", center_pixel)
+    normalized_pixel = tuple(value / 255 for value in center_pixel)
+    st.write("Normalized center pixel:", normalized_pixel)
     st.write("Original dimensions:", width, "×", height, "pixels")
     st.write("Processed dimensions:", processed_width, "×", processed_height, "pixels")
     st.image(processed_image, caption="Final 224 × 224 padded image")
