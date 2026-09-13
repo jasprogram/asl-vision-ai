@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 venv/
 *.pyc
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
